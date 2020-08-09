@@ -1,16 +1,11 @@
-run-rabbitmq:
-	docker run --rm --name rabbitMQ -d -p 5672:5672 rabbitmq:3
+docker: 
+	docker build -t square-odd-integers .
 
-run-nameko-service:
-	@echo "RabbitMQ will take some time to startup, so ignore the first few connection failures."
-	nameko run server
+run:
+	docker-compose up -d
 
-echo-warning:
-	@echo "RabbitMQ will take some time to startup, so ignore the first few connection failures."
+run-client:
+	docker exec -it square-odd-integers bash -c "nameko shell --config /var/nameko/conf.yml"
 
-run: run-rabbitmq run-nameko-service
-
-stop-rabbitmq:
-	docker stop rabbitMQ
-
-stop: stop-rabbitmq
+stop:
+	docker-compose down

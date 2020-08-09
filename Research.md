@@ -16,3 +16,21 @@ Research steps followed for this project:
   - Read up on AMPQ and got a gist of the main terminology: Broker, Message, Consumer and Producer (sometimes called Publisher).
   - Ran RabbitMQ in Docker.
 - Implemented the Square Odd Integers service as a Nameko Hello World example for an initial working prototype.
+
+2. Dockerise Square Odd Integers
+
+- Searched for a Docker base image for a Nameko service.
+  - Only thing I could find by Nameko was an [examples repo](https://github.com/nameko/nameko-examples).
+  - The docs explain the examples but not really what the Docker base is made of for these examples. This is more clear when looking at the individual Dockerfiles which follow a similar structure.
+  - The examples make use of [multistage Docker builds](https://docs.docker.com/develop/develop-images/multistage-build/), which allows for using one image only for building and another only for deploying. This can save on space when your deployment image does not have all the build tools needed for building. It is also more secure, only using what is needed for deployment.
+  - However, the structure didn't make enough sense to me for this project. The base image used `nameko-example-base` was also not publically available so I could not be sure what I was running.
+  - I decided to go with a `python:3.8-slim` base image and install `pip` to get all the packages required.
+  - I converted the Pipfile to `requirements.txt` (in the Docker build) in order to just use `pip` and not need `pipenv` in the docker container as well.
+- Thought about how to run the Docker container/s.
+  - I decided to use [Docker Compose](https://docs.docker.com/compose/install/) for running containers.
+    - The current nameko service (and possibly others in future) depends on a running Rabbit MQ. Docker Compose easily resolves dependent services.
+    - I want to run the docker container with a convenient name that makes it easier to work with. This can be set in the docker-compose file.
+    - The services will run in their own Docker network (default docker-compose [network mode](https://docs.docker.com/compose/networking/#configure-the-default-network)). This will make sure that it doesn't interfere with anything else running on the user's PC.
+  - I had to create a `conf.yml` file in order to tell the Nameko service how to talk to RabbitMQ (using the docker service name as a hostname).
+- Now the user only needs `Docker` and `Docker Compose` to run the service. 
+- Added a convenient `make` command to test a client connection.

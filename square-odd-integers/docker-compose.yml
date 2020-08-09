@@ -1,0 +1,9 @@
+version: '3'
+services:
+  server:
+    image: square-odd-integers
+    container_name: square-odd-integers
+    depends_on:
+    - rabbitmq
+  rabbitmq:
+    image: "rabbitmq:3"
