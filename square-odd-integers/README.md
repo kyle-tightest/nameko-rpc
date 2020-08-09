@@ -1,6 +1,7 @@
 # Square Odd Integers
 
-This service implements the Nameko Hello World example.  
+This rpc service accepts a list of integers as input,  
+and returns the list with all of the odd integers squared. 
 
 ## Minimum requirements to run
 - [Docker](https://docs.docker.com/get-docker/)

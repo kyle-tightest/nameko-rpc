@@ -9,3 +9,5 @@ run-client:
 
 stop:
 	docker-compose down
+
+re-run: docker run

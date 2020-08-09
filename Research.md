@@ -17,7 +17,7 @@ Research steps followed for this project:
   - Ran RabbitMQ in Docker.
 - Implemented the Square Odd Integers service as a Nameko Hello World example for an initial working prototype.
 
-2. Dockerise Square Odd Integers
+# 2. Dockerise Square Odd Integers
 
 - Searched for a Docker base image for a Nameko service.
   - Only thing I could find by Nameko was an [examples repo](https://github.com/nameko/nameko-examples).
@@ -34,3 +34,8 @@ Research steps followed for this project:
   - I had to create a `conf.yml` file in order to tell the Nameko service how to talk to RabbitMQ (using the docker service name as a hostname).
 - Now the user only needs `Docker` and `Docker Compose` to run the service. 
 - Added a convenient `make` command to test a client connection.
+
+# 3. Implement Square Odd Integers business logic
+
+- Did not do any research at this step, the business logic was pretty straight forward.
+- Added a make command to conveniently rebuild the docker image and re-run
