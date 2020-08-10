@@ -1,11 +1,6 @@
-# nameko-rpc
+# String Encoder
 
-This is a microservice project that uses the [Nameko](https://github.com/nameko/nameko) framework.  
-The following microservices are available:  
-- [Square Odd Integers](square-odd-integers/README.md)
-- [String Encoder](string-encoder/README.md)
-
-Please read [this](Research.md) for more information on how this project was implemented and the relevant design decisions that were made.
+This rpc service implements the Nameko hello world example.
 
 ## Minimum requirements to run
 - [Docker](https://docs.docker.com/get-docker/)
@@ -21,12 +16,12 @@ Please read [this](Research.md) for more information on how this project was imp
 
 ## Setup
 
-Build the docker images for the microservices:
+Build the docker image for square-odd-integers:
 ```bash
 make docker
 ```
 
-If you do not have `make` installed, execute [this](Makefile#L2-L3) command instead. 
+If you do not have `make` installed, execute [this](Makefile#L2 command instead. 
 
 ## Run
 
@@ -44,13 +39,10 @@ Run a client using the nameko shell:
 make run-client
 ```
 
-If you do not have `make` installed, execute [this](Makefile#L8) command instead.
+If you do not have `make` installed, execute [this](Makefile#L5) command instead.
 
-In this shell, you can test a client-side call to `square_odd_service` (Square Odd Integers) as well as `greeting_service` (String Encoder):
+In this shell, you can test a client-side call:
 ```bash
->>> n.rpc.square_odd_service.square([1,2,3])
-'[1, 2, 9]'
 >>> n.rpc.greeting_service.hello(name="Invictus")
 'Hello, Invictus'
 ```
-

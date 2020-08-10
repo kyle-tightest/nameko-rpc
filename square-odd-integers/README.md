@@ -22,7 +22,7 @@ Build the docker image for square-odd-integers:
 make docker
 ```
 
-If you do not have `make` installed, execute [this](Makefile#L16) command instead. 
+If you do not have `make` installed, execute [this](Makefile#L2) command instead. 
 
 ## Run
 
@@ -31,7 +31,7 @@ Run the service using Docker-compose:
 make run
 ```
 
-If you do not have `make` installed, execute [this](Makefile#L19) command instead.
+If you do not have `make` installed, execute [this](Makefile#L5) command instead.
 
 ## Test
 
@@ -40,8 +40,10 @@ Run a client using the nameko shell:
 make run-client
 ```
 
+If you do not have `make` installed, execute [this](Makefile#L8) command instead.
+
 In this shell, you can test a client-side call:
 ```bash
->>> n.rpc.greeting_service.hello(name="Invictus")
-'Hello, Invictus'
+>>> n.rpc.square_odd_service.square([1,2,3])
+'[1, 2, 9]'
 ```

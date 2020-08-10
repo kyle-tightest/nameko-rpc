@@ -1,5 +1,4 @@
 from nameko.rpc import rpc
-from nameko.testing.services import worker_factory
 
 class SquareOddIntegers:
     name = "square_odd_service"

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  square-odd-integers:
+    image: square-odd-integers
+    container_name: square-odd-integers
+    depends_on:
+    - rabbitmq
+  string-encoder:
+    image: string-encoder
+    container_name: string-encoder
+    depends_on:
+    - rabbitmq
+  rabbitmq:
+    image: "rabbitmq:3"

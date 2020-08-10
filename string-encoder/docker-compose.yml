@@ -1,0 +1,9 @@
+version: '3'
+services:
+  server:
+    image: string-encoder
+    container_name: string-encoder
+    depends_on:
+    - rabbitmq
+  rabbitmq:
+    image: "rabbitmq:3"

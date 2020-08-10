@@ -1,5 +1,10 @@
 Research steps followed for this project:
 
+# Overall strategy and layout
+- The business logic mentioned in the requirements did not seem too difficult. So I decided to tackle the environment and setup first, before looking at the business logic.
+- The numbered headings below enumerate the seperate commits made to this repository.
+- I followed the principle of having working and well documented steps at each commit. Even though this may take longer to implement, it provides clear direction to anyone reading this repository (including myself) and gives explanation to any design decisions and why they might have changed between commits. 
+
 # 1. Implement Square Odd Integers as a Nameko Hello World example
 
 - Read the project brief.
@@ -38,4 +43,18 @@ Research steps followed for this project:
 # 3. Implement Square Odd Integers business logic
 
 - Did not do any research at this step, the business logic was pretty straight forward.
-- Added a make command to conveniently rebuild the docker image and re-run
+- Added a make command to conveniently rebuild the docker image and re-run.
+
+# 4. Implement String Encoder as Nameko Hello World example
+
+- The String Encoder service is first implemented as a hello world example.
+  - A seperate service from Square Odd Integers. This follows a [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design) architecture for microservices.
+  - It will reside in a new folder in the root directory.
+  - Many building blocks can be copied (and possibly slightly edited) from Square Odd Integers, eg. Pipfile, Dockerfile, etc.
+- However, seperating the two Docker Compose services will mean two seperate services in two seperate Docker networks.
+  - Two RabbitMQ services is unneccesary, unless you want to scale.
+  - This makes a little bit more complicated to run and test the different services. Especially if these services form part of one product and need to deployed together.
+  - But it is also important to give the user to test them seperately if needed. Seperation of concerns, eg. a bug was found on Sqaure Odd Integers and someone with little context needs to be fix it. They should not need to worry about String Encoder as well.
+- Thus, I created another Docker Compose file to run them both simultaneously.
+  - The Docker Compose files to run them individually are still there.
+- Added appropriate `Make` commands to allow the user to quickly run both services.
