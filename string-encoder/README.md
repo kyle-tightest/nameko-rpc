@@ -1,7 +1,7 @@
 # String Encoder
 
 This rpc service implements a string encoder that uses Huffman coding,  
-to encode a given list of strings.
+to encode a given list of strings. It also decodes strings that were previously encoded.
 
 ## Minimum requirements to run
 - [Docker](https://docs.docker.com/get-docker/)
@@ -45,5 +45,7 @@ If you do not have `make` installed, execute [this](Makefile#L5) command instead
 In this shell, you can test a client-side call:
 ```bash
 >>> n.rpc.string_encoder_service.encode(["Hello", "Invictus"])
-{'Hello': 'POlJzw==', 'Invictus': '+AzuxBhP'}
+{'Hello': '3ce949cf', 'Invictus': 'f80ceec4184f'}
+>>> n.rpc.string_encoder_service.decode(string='3ce949cf')
+'Hello'
 ```

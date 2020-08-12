@@ -59,7 +59,7 @@ Research steps followed for this project:
   - The Docker Compose files to run them individually are still there.
 - Added appropriate `Make` commands to allow the user to quickly run both services.
 
-# 5. Implement String Encoder business logic
+# 5. Implemented "encode" function of String Encoder
 
 - Read up on [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding).
   - Algorithm for lossless data compression.
@@ -74,4 +74,10 @@ Research steps followed for this project:
   - Developed on in the last 2 months
 - The huffman encoder will be trained (input alphabet) with data from [Shakespear's complete works](http://www.gutenberg.org/files/100/100-0.txt) on startup.
   - Conveninetly provided by the library
-- The resulting byte array (binary tree) will be base64 encoded and decoded before returning to the user.
+- The resulting byte array (binary tree) will be base64 encoded before returning to the user.
+
+# 6. Implemented "decode" function of String Encoder
+
+- Realised that base64 encoding nullified the compression done by the Huffman coding.
+  - Perhaps not in this example as it is all just strings, but if in future it might want to be stored or transmitted as binary data.
+  - Changed to a hex string

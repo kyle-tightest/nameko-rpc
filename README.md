@@ -50,7 +50,10 @@ In this shell, you can test a client-side call to `square_odd_service` (Square O
 ```bash
 >>> n.rpc.square_odd_service.square([1,2,3])
 '[1, 2, 9]'
+
 >>> n.rpc.string_encoder_service.encode(["Hello", "Invictus"])
-{'Hello': 'POlJzw==', 'Invictus': '+AzuxBhP'}
+{'Hello': '3ce949cf', 'Invictus': 'f80ceec4184f'}
+>>> n.rpc.string_encoder_service.decode(string='3ce949cf')
+'Hello'
 ```
 

@@ -1,7 +1,6 @@
 from nameko.rpc import rpc
 from dahuffman import HuffmanCodec
 from dahuffman import load_shakespeare
-import base64
 
 class StringEncoder:
     name = "string_encoder_service"
@@ -18,9 +17,19 @@ class StringEncoder:
         for original in list(strings):
             if original not in answer:
                 encoded = codec.encode(original)
-                b64encoded = base64.b64encode(encoded).decode('utf-8')
-                answer.update({original : b64encoded})
+                hex_encoded = encoded.hex()
+                answer.update({original : hex_encoded})
 
         return answer
-        
+    
+    @rpc
+    def decode(self, string):
+        if not isinstance(string, str):
+            return "input is not string"
+        string = str(string)
+        try:
+            encodedbytes = bytes.fromhex(string)
+        except:
+            return "input is not valid Hex string"
+        return codec.decode(encodedbytes)
         
