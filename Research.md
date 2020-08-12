@@ -58,3 +58,20 @@ Research steps followed for this project:
 - Thus, I created another Docker Compose file to run them both simultaneously.
   - The Docker Compose files to run them individually are still there.
 - Added appropriate `Make` commands to allow the user to quickly run both services.
+
+# 5. Implement String Encoder business logic
+
+- Read up on [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding).
+  - Algorithm for lossless data compression.
+  - The input is an alphabet (string of characters) and the probability of each character occuring in the string (which could also be calculated on the fly for a given string).
+  - The output is a binary string representing the compressed input.
+  - The compressed string can then be decompressed if you have the binary tree used to compress it.
+  - Thus, the compressor and decompressor must have access to the same binary tree or be able to reconstruct it exactly.
+- I found a PyPI library which does huffman encoding and decoding called [dahuffman])(https://pypi.org/project/dahuffman/)
+  - Usage example is straight-forward.
+  - Built for Python 3.5 and up
+  - Only uses standard Python libraries (no external dependency risk)
+  - Developed on in the last 2 months
+- The huffman encoder will be trained (input alphabet) with data from [Shakespear's complete works](http://www.gutenberg.org/files/100/100-0.txt) on startup.
+  - Conveninetly provided by the library
+- The resulting byte array (binary tree) will be base64 encoded and decoded before returning to the user.

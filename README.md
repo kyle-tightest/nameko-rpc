@@ -46,11 +46,11 @@ make run-client
 
 If you do not have `make` installed, execute [this](Makefile#L8) command instead.
 
-In this shell, you can test a client-side call to `square_odd_service` (Square Odd Integers) as well as `greeting_service` (String Encoder):
+In this shell, you can test a client-side call to `square_odd_service` (Square Odd Integers) as well as the `string_encoder_service` (String Encoder):
 ```bash
 >>> n.rpc.square_odd_service.square([1,2,3])
 '[1, 2, 9]'
->>> n.rpc.greeting_service.hello(name="Invictus")
-'Hello, Invictus'
+>>> n.rpc.string_encoder_service.encode(["Hello", "Invictus"])
+{'Hello': 'POlJzw==', 'Invictus': '+AzuxBhP'}
 ```
 

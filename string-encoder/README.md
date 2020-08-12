@@ -1,6 +1,7 @@
 # String Encoder
 
-This rpc service implements the Nameko hello world example.
+This rpc service implements a string encoder that uses Huffman coding,  
+to encode a given list of strings.
 
 ## Minimum requirements to run
 - [Docker](https://docs.docker.com/get-docker/)
@@ -16,7 +17,7 @@ This rpc service implements the Nameko hello world example.
 
 ## Setup
 
-Build the docker image for square-odd-integers:
+Build the docker image for string-encoder:
 ```bash
 make docker
 ```
@@ -43,6 +44,6 @@ If you do not have `make` installed, execute [this](Makefile#L5) command instead
 
 In this shell, you can test a client-side call:
 ```bash
->>> n.rpc.greeting_service.hello(name="Invictus")
-'Hello, Invictus'
+>>> n.rpc.string_encoder_service.encode(["Hello", "Invictus"])
+{'Hello': 'POlJzw==', 'Invictus': '+AzuxBhP'}
 ```
